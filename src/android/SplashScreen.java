@@ -325,8 +325,13 @@ public class SplashScreen extends CordovaPlugin {
 
                 Window window = splashDialog.getWindow();
                 splashDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                splashDialog.getWindow().setStatusBarColor(preferences.getInteger("backgroundColor", Color.TRANSPARENT));
                 
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    splashDialog.getWindow().setStatusBarColor(preferences.getInteger("backgroundColor", Color.TRANSPARENT));
+                }
+
+
+
                 splashDialog.setContentView(splashImageView);
                 splashDialog.setCancelable(false);
                 splashDialog.show();
